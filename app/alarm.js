@@ -12,6 +12,7 @@ var ntimeout=5000;
 var delayTime=35000;
 var phonenumbers = [];
 var alarmcode = ''
+var alarmistripper = false
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -116,18 +117,23 @@ module.exports = function(mqtt_client,User,Alarmstate) {
 
     // Receive (data is like {code: xxx, pulseLength: xxx})
     rfSniffer.on('data', function (data) {
-      console.log(data);
+      console.log(data.code);
             _.forEach(pirs, function(value, key) {
-                if (value[key] == data) {
-                    if(Alarmstate === true) {
-
-                        sendamx('alarmTripped')
+                if (value[key] == data.code) {
+                    if(Alarmstate === true && alarmistripper ==false){
+                        alarmistripper = true;
+                        sendamx('alarmTripped');
                         setTimeout(function () {
                             if(Alarmstate === true)
                             {
-                                Goalarm(true)
+                                Goalarm(true);
                                 sendEmail('Zone ' +key.toString() +' has tripped alarm is active')
+                              var timer1 = setTimeout(function () {
+                                Goalarm(false);
+                                Alarmstate = true;
+                                alarmistripper = false;
 
+                              },500000)
                             }
                         }, ntimeout)
                     }
@@ -145,6 +151,7 @@ module.exports = function(mqtt_client,User,Alarmstate) {
 
               setTimeout(function(){
                 Alarmstate = true;
+                sendamx('Alarm state On')
           },delayTime)
           }
             if(message.toString() == 'Code='){
@@ -153,7 +160,7 @@ module.exports = function(mqtt_client,User,Alarmstate) {
                     if(arr[1] == alarmcode)
                     {
                         Goalarm(false)
-
+                      clearTimeout(timer1);
                     }
 
             }
