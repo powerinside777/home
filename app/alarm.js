@@ -21,11 +21,11 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 var rpi433    = require('rpi-433'),
 rfSniffer = rpi433.sniffer({
-    pin: 18,                     //Snif on GPIO 2 (or Physical PIN 13)
+    pin: 1,                     //Snif on GPIO 2 (or Physical PIN 13)
     debounceDelay: 500          //Wait 500ms before reading another code
 }),
 rfEmitter = rpi433.emitter({
-    pin: 17,                     //Send through GPIO 0 (or Physical PIN 11)
+    pin: 0,                     //Send through GPIO 0 (or Physical PIN 11)
     pulseLength: 350            //Send the code with a 350 pulse length
 });
 
@@ -116,7 +116,7 @@ module.exports = function(mqtt_client,User,Alarmstate) {
 
     // Receive (data is like {code: xxx, pulseLength: xxx})
     rfSniffer.on('data', function (data) {
-
+      console.log(data);
             _.forEach(pirs, function(value, key) {
                 if (value[key] == data) {
                     if(Alarmstate === true) {
@@ -214,8 +214,40 @@ setInterval(function(){
 
         alarmcode = data.local.code;
         ntimeout = data.local.timeout;
+      delayTime = data.local.delaytime
 
     });
 
-},10000)
+},100000)
+
+User.findOne({ 'local.email' :  "josh" }, function(err, data) {
+  if (err) {
+    console.log(err);
+    return;
+  }
+
+  // if no user is found, return the message
+  if (!data)
+    return;
+
+  _.forEach(data.local.inputdevices, function(value, key) {
+    pirs[key] = value
+  });
+  _.forEach(data.local.outputdevices, function(value, key) {
+    outputs[key] = value
+  });
+  _.forEach(data.local.codes, function(value, key) {
+    rollingcode[key] = value
+
+  });
+  _.forEach(data.local.phonenumbers, function(value, key) {
+    phonenumbers[key] = value
+
+  });
+
+  alarmcode = data.local.code;
+  ntimeout = data.local.timeout;
+  delayTime = data.local.delaytime
+
+});
 

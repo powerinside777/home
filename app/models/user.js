@@ -14,7 +14,8 @@ var userSchema = mongoose.Schema({
         outputdevices:   [],
         codes: [],
         timeout:    Number,
-        phonenumbers: []
+        phonenumbers: [],
+      delaytime:Number
     }
 
 });
