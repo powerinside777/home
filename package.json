@@ -1,0 +1,34 @@
+{
+  "name": "PiAlarm",
+  "version": "0.2.0",
+  "description": "House alarm",
+  "main": "device.js",
+  "dependencies": {
+    "net": "",
+    "mqtt": "latest",
+    "rpi-433":"",
+    "express" : "3.x",
+    "ejs" : "",
+    "mongoose" : "",
+    "passport" : "~0.1.6",
+    "passport-local" : "~0.1.6",
+    "connect-flash" : "~0.1.1",
+    "bcrypt-nodejs" : "latest",
+    "underscore":"",
+    "simcom":"",
+    "body-parser":"latest",
+    "cookie-parser":"",
+    "express-logger":"",
+    "path":"",
+    "express-session":"",
+    "static-server":"",
+    "nodemailer":""
+  },
+
+  "scripts": {
+    "start": "node device.js"
+
+  },
+  "author": "Joshua Hodgetts",
+  "license": "MIT"
+}
