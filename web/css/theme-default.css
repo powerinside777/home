@@ -1106,7 +1106,7 @@ body.page-container-boxed .page-container {
   -moz-border-radius: 20%;
   -webkit-border-radius: 20%;
   border-radius: 20%;
-  padding: 0px;
+  padding: 50px;
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
   -ms-transition: all 200ms ease;
@@ -2560,7 +2560,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: #1b1e24;
+  color: #ffffff;
   padding: 0px;
   margin: 0px;
 }
@@ -3353,13 +3353,13 @@ td.dataTables_empty {
 }
 .widget.widget-default {
   background: #ffffff;
-   
-   
-   
-   
-   
-   
-   
+
+
+
+
+
+
+
 }
 .widget.widget-primary {
   background: #1b1e24;
@@ -3382,7 +3382,7 @@ td.dataTables_empty {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#95b75d, endColorstr=#89ad4d, GradientType=0);
 }
 .widget.widget-info {
-background: #1caf9a !important;  
+background: #1caf9a !important;
 }
 .widget.widget-warning {
   background: #1caf9a;

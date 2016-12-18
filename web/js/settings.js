@@ -4,17 +4,17 @@ var site_settings = '<div class="ts-button">'
     +'<div class="ts-body">'
 	    +'<div class="ts-title">Themes</div>'
         +'<div class="ts-themes">'
-            +'<a href="#" class="active" data-theme="css/theme-default.css"><img src="img/themes/default.jpg"/></a>'            
+            +'<a href="#" class="active" data-theme="css/theme-default.css"><img src="img/themes/default.jpg"/></a>'
             +'<a href="#" data-theme="css/theme-brown.css"><img src="img/themes/brown.jpg"/></a>'
-            +'<a href="#" data-theme="css/theme-blue.css"><img src="img/themes/blue.jpg"/></a>'                        
-            +'<a href="#" data-theme="css/theme-white.css"><img src="img/themes/light.jpg"/></a>'            
+            +'<a href="#" data-theme="css/theme-blue.css"><img src="img/themes/blue.jpg"/></a>'
+            +'<a href="#" data-theme="css/theme-white.css"><img src="img/themes/light.jpg"/></a>'
             +'<a href="#" data-theme="css/theme-black.css"><img src="img/themes/black.jpg"/></a>'
         +'</div>'
 
-        
-        
+
+
     +'</div>';
-    
+
 var settings_block = document.createElement('div');
     settings_block.className = "theme-settings";
     settings_block.innerHTML = site_settings;
@@ -78,6 +78,7 @@ $(document).ready(function(){
                 theme_settings.st_head_fixed    = -1;
                 theme_settings.st_sb_fixed      = -1;
                 theme_settings.st_sb_scroll     = 1;
+                theme_settings.st_sb_scroll     = 1;
             }else{
                 theme_settings.st_head_fixed    = 0;
                 theme_settings.st_sb_fixed      = 1;
@@ -107,107 +108,107 @@ $(document).ready(function(){
 });
 
 function set_settings(theme_settings,option){
-    
+
     /* Start Header Fixed */
     if(theme_settings.st_head_fixed == 1)
         $(".page-container").addClass("page-navigation-top-fixed");
     else
-        $(".page-container").removeClass("page-navigation-top-fixed");    
+        $(".page-container").removeClass("page-navigation-top-fixed");
     /* END Header Fixed */
-    
+
     /* Start Sidebar Fixed */
-    if(theme_settings.st_sb_fixed == 1){        
+    if(theme_settings.st_sb_fixed == 1){
         $(".page-sidebar").addClass("page-sidebar-fixed");
     }else
         $(".page-sidebar").removeClass("page-sidebar-fixed");
     /* END Sidebar Fixed */
-    
+
     /* Start Sidebar Fixed */
-    if(theme_settings.st_sb_scroll == 1){          
-        $(".page-sidebar").addClass("scroll").mCustomScrollbar("update");        
+    if(theme_settings.st_sb_scroll == 1){
+        $(".page-sidebar").addClass("scroll").mCustomScrollbar("update");
     }else
         $(".page-sidebar").removeClass("scroll").css("height","").mCustomScrollbar("disable",true);
-    
+
     /* END Sidebar Fixed */
-    
+
     /* Start Right Sidebar */
     if(theme_settings.st_sb_right == 1)
         $(".page-container").addClass("page-mode-rtl");
     else
         $(".page-container").removeClass("page-mode-rtl");
     /* END Right Sidebar */
-    
+
     /* Start Custom Sidebar */
     if(theme_settings.st_sb_custom == 1)
         $(".page-sidebar .x-navigation").addClass("x-navigation-custom");
     else
         $(".page-sidebar .x-navigation").removeClass("x-navigation-custom");
     /* END Custom Sidebar */
-    
+
     /* Start Custom Sidebar */
     if(option && option === 'st_sb_toggled'){
         if(theme_settings.st_sb_toggled == 1){
             $(".page-container").addClass("page-navigation-toggled");
             $(".x-navigation-minimize").trigger("click");
-        }else{          
+        }else{
             $(".page-container").removeClass("page-navigation-toggled");
             $(".x-navigation-minimize").trigger("click");
         }
     }
     /* END Custom Sidebar */
-    
+
     /* Start Layout Boxed */
     if(theme_settings.st_layout_boxed == 1)
         $("body").addClass("page-container-boxed");
     else
         $("body").removeClass("page-container-boxed");
     /* END Layout Boxed */
-    
+
     /* Set states for options */
-    if(option === false || option === 'st_layout_boxed' || option === 'st_sb_fixed' || option === 'st_sb_scroll'){        
+    if(option === false || option === 'st_layout_boxed' || option === 'st_sb_fixed' || option === 'st_sb_scroll'){
         for(option in theme_settings){
             set_settings_checkbox(option,theme_settings[option]);
         }
     }
     /* End states for options */
-    
+
     /* Call resize window */
     $(window).resize();
     /* End call resize window */
 }
 
 function set_settings_checkbox(name,value){
-    
-    if(name == 'st_layout_boxed'){    
-        
+
+    if(name == 'st_layout_boxed'){
+
         $(".theme-settings").find("input[name="+name+"]").prop("checked",false).parent("div").removeClass("checked");
-        
+
         var input = $(".theme-settings").find("input[name="+name+"][value="+value+"]");
-                
+
         input.prop("checked",true);
-        input.parent("div").addClass("checked");        
-        
+        input.parent("div").addClass("checked");
+
     }else{
-        
+
         var input = $(".theme-settings").find("input[name="+name+"]");
-        
-        input.prop("disabled",false);            
-        input.parent("div").removeClass("disabled").parent(".check").removeClass("disabled");        
-        
+
+        input.prop("disabled",false);
+        input.parent("div").removeClass("disabled").parent(".check").removeClass("disabled");
+
         if(value === 1){
             input.prop("checked",true);
             input.parent("div").addClass("checked");
         }
         if(value === 0){
-            input.prop("checked",false);            
-            input.parent("div").removeClass("checked");            
+            input.prop("checked",false);
+            input.parent("div").removeClass("checked");
         }
         if(value === -1){
-            input.prop("checked",false);            
+            input.prop("checked",false);
             input.parent("div").removeClass("checked");
-            input.prop("disabled",true);            
+            input.prop("disabled",true);
             input.parent("div").addClass("disabled").parent(".check").addClass("disabled");
-        }        
-                
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var modem = require('simcom').modem('/dev/ttyAMA0');
+//var modem = require('simcom').modem('/dev/ttyAMA0');
 var User       		= require('./models/user.js');
 var nodemailer = require("nodemailer");
 var net = require('net');
@@ -8,11 +8,11 @@ var PORT = 6969;
 var pirs = [];
 var outputs = [];
 var rollingcode = [];
-var ntimeout=5000;
+var ntimeout=25000;
 var delayTime=35000;
 var phonenumbers = [];
-var alarmcode = ''
-var alarmistripper = false
+var alarmcode = '';
+var alarmistripper = false;
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
@@ -20,6 +20,7 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
         pass: "myjesus0101"
     }
 });
+/*
 var rpi433    = require('rpi-433'),
 rfSniffer = rpi433.sniffer({
     pin: 1,                     //Snif on GPIO 2 (or Physical PIN 13)
@@ -29,7 +30,7 @@ rfEmitter = rpi433.emitter({
     pin: 0,                     //Send through GPIO 0 (or Physical PIN 11)
     pulseLength: 350            //Send the code with a 350 pulse length
 });
-
+*/
 function sendEmail(message) {
 
     var mailOptions={
@@ -40,10 +41,10 @@ function sendEmail(message) {
     smtpTransport.sendMail(mailOptions, function(error, response){
         if(error){
             console.log(error);
-            res.end("error");
+
         }else{
             console.log("Message sent: " + response.message);
-            res.end("sent");
+
         }
     });
 }
@@ -81,8 +82,8 @@ function sendamx(message) {
         console.log('conected')
         socket.destroy()
     });
-    socket.on('error', function() {
-        console.log('conected')
+    socket.on('error', function(err) {
+        console.log(err)
 
     });
     console.log('yip')
@@ -111,15 +112,16 @@ module.exports = function(mqtt_client,User,Alarmstate) {
                 });
             });
             sendamx('alarmoff')
+          console.log("alarm deactivated")
 
         }
     }
-
+/*
     // Receive (data is like {code: xxx, pulseLength: xxx})
     rfSniffer.on('data', function (data) {
       console.log(data.code);
             _.forEach(pirs, function(value, key) {
-                if (value[key] == data.code) {
+                if (pirs[key] == data.code) {
                     if(Alarmstate === true && alarmistripper ==false){
                         alarmistripper = true;
                         sendamx('alarmTripped');
@@ -143,7 +145,7 @@ module.exports = function(mqtt_client,User,Alarmstate) {
 
             });
 
-         });
+         });*/
     mqtt_client.on('message', function (topic, message) {
         console.log('MQTT:'+topic+':'+message.toString());
         if(topic == 'house/alarm/'){
@@ -175,9 +177,9 @@ module.exports = function(mqtt_client,User,Alarmstate) {
 
         // Add a 'data' event handler to this instance of socket
         sock.on('data', function(data) {
-            console.log(data)
+            console.log(data.toString('ascii'))
             _.forEach(rollingcode, function(value, key) {
-                if (value == data) {
+                if (rollingcode[key] == data.toString('ascii')) {
                     Goalarm(false)
 
                 }
@@ -190,7 +192,7 @@ module.exports = function(mqtt_client,User,Alarmstate) {
             console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort);
         });
 
-    }).listen(PORT, HOST);
+    }).listen(PORT);
 };
 
 setInterval(function(){

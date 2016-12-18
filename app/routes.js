@@ -1,7 +1,8 @@
 // app/routes.js
 
 var currentuser =""
-module.exports = function(app, passport) {
+var alarmsend = require('../app/alarm.js');
+module.exports = function(app, passport,Alarmstate) {
 
 	// =====================================
 	// HOME PAGE (with login links) ========
@@ -55,6 +56,7 @@ console.log('hello')
 		});
 
 	});
+
 	// process the signup form
 	/*app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect : '/login', // redirect to the secure profile section
@@ -62,11 +64,19 @@ console.log('hello')
 		failureFlash : true // allow flash messages
 	}));
 */
-	app.get('/arm', isLoggedIn, function(req, res) {
-       set
-	});
+	app.post('/arm', isLoggedIn, function(req, res) {
+    Alarmstate =true;
+    console.log(Alarmstate)
+    res.send('ok')
 
-	app.get('/savecode', isLoggedIn, function(req, res) {
+	});
+  app.post('/disarm', isLoggedIn, function(req, res) {
+    Alarmstate =false;
+    console.log(Alarmstate)
+    res.send('ok')
+
+  });
+	app.post('/savecode', isLoggedIn, function(req, res) {
 
 		User.findOne({ 'local.email' :  "josh" }, function(err, user) {
 			// if there are any errors, return the error
@@ -89,7 +99,21 @@ console.log('hello')
 			});
 
 		});
+  app.get('/alarm.json', isLoggedIn, function(req, res) {
 
+    if(Alarmstate == true) {
+
+      res.json({
+        "Status": 'on'
+      })
+    }
+    else if(Alarmstate == false) {
+
+      res.json({
+        "Status": 'off'
+      })
+    }
+  });
 
 	// =====================================
 	// LOGOUT ==============================
@@ -99,6 +123,7 @@ console.log('hello')
 		res.redirect('/');
 	});
 };
+
 
 // route middleware to make sure
 function isLoggedIn(req, res, next) {

@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>        
+    <head>
         <!-- META SECTION -->
-        <title>Joli Admin - Responsive Bootstrap Admin Template</title>            
+        <title>Joli Admin - Responsive Bootstrap Admin Template</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+      <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+      <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+      <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <!-- END META SECTION -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.16/angular.min.js"></script>
-        <!-- CSS INCLUDE -->        
+        <!-- CSS INCLUDE -->
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->
     </head>
-    <body class="page-container-boxed">
+    <body ng-app="app" ng-controller="ButtonPageCtrl" class="page-container-boxed">
         <!-- START PAGE CONTAINER -->
         <div class="page-container">
 
 
             <!-- PAGE CONTENT -->
             <div class="page-content">
-                
+
                 <!-- START X-NAVIGATION VERTICAL -->
                 <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-
-
+                  <li class="xn-icon-button pull-left">
+                  </li>
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
-                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
-                    </li> 
+                        <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+                    </li>
                     <!-- END SIGN OUT -->
                     <!-- MESSAGES -->
 
                 </ul>
-                <!-- END X-NAVIGATION VERTICAL -->                     
+                <!-- END X-NAVIGATION VERTICAL -->
 
-                
+
                 <!-- PAGE TITLE -->
-                <div class="page-title">                    
+                <div class="page-title">
                     <h2><span class="fa fa-bell-o"></span> House Alarm</h2>
                 </div>
-                <!-- END PAGE TITLE -->                
-                
+                <!-- END PAGE TITLE -->
+
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">
-                
-                    <!-- TILES -->                
+
+                    <!-- TILES -->
                     <div class="row">
                         <div class="col-md-4">
 
@@ -129,63 +131,48 @@
 
 
                         <!-- END SETTINGS WIDGET -->
-                        <div class="col-md-3">
-                        <div class="widget widget-success widget-item-icon">
-                            <div class="widget-item-left">
-                                <span class="fa fa-globe"></span>
-                            </div>
-                            <div class="widget-data">
-                                <div class="widget-int num-count">6,953</div>
-                                <div class="widget-title">Total visitors</div>
 
-                            </div>
-                            <div class="widget-controls">
-                                <a href="#" class="widget-control-right"><span class="fa fa-times"></span></a>
-                            </div>
-                        </div>
-                            </div>
+
+
+                          <section class="col-md-6 col-lg-3">
+
 
 
                         <div class="col-md-3">
-                            <a href="#" class="tile tile-success tile-valign"><span class="fa fa-calendar"></span></a>
                         </div>
+                            </section>
 
-
-                        <div class="col-md-3">
-                            <a href="#" class="tile tile-danger tile-valign"><span class="fa fa-laptop"></span></a>
-                        </div>
-                    </div>                       
                     <div class="row">
-                        <div class="col-md-3">                        
-                            <a href="#" class="tile tile-default">
-                                254
-                                <p>Sales today</p>
-                                <div class="informer informer-primary">08.09.14</div>
-                                <div class="informer informer-success dir-tr"><span class="fa fa-caret-up"></span></div>
-                            </a>                        
+                      <!-- PROFILE WIDGET -->
+                      <div class="col-md-4">
+
+                        <div class="panel panel-default">
+                          <div class="panel-body profile bg-info">
+
+                            <div class="profile-image">
+                              <img src="assets/images/users/lock2.png" id="alarmimage" alt="John Doe">
+                            </div>
+                            <div class="profile-data">
+                              <div class="profile-data-name">Alarm Status</div>
+                              <div class="profile-data-title"></div>
+                            </div>
+                            <div class="profile-controls">
+
+                              <button progress-button="progressFunctionarm()" pb-style="rotate-side-down " class=" btn btn-warning">Arm</button>
+
+                              <button progress-button="progressFunctiondisarm()"  pb-style="rotate-side-down" class=" btn btn-danger">Disarm</button>
+
+                            </div>
+
+                          </div>
+                          <div style="width:100%; height:100%">
+
+
+                          </div>
                         </div>
-                        <div class="col-md-3">                        
-                            <a href="#" class="tile tile-primary">
-                                6,432
-                                <p>Visitors Today</p>
-                                <div class="informer informer-warning"><span class="fa fa-caret-down"></span></div>
-                                <div class="informer informer-default dir-tr">10.09.14</div>
-                            </a>
-                        </div>
-                        <div class="col-md-3">                        
-                            <a href="#" class="tile tile-success tile-valign">9.5gb
-                                <div class="informer informer-default dir-tr"><span class="fa fa-cloud"></span></div>
-                                <div class="informer informer-default dir-bl">Free Disk Space</div>
-                            </a>                                                    
-                        </div>
-                        <div class="col-md-3">                        
-                            <a href="#" class="tile tile-info tile-valign">
-                                1,153
-                                <div class="informer informer-default">Registred Users</div>
-                                <div class="informer informer-default dir-br"><span class="fa fa-users"></span></div>
-                            </a>                            
-                        </div>
-                    </div>         
+
+                      </div>
+                    </div>
                     <!-- END TILES -->
 
 
@@ -259,22 +246,22 @@
                     <div class="row">
                         <!-- PRICING TABLE -->
 
-                
+
                 </div>
                 <!-- END PAGE CONTENT WRAPPER -->
-                
-            </div>            
+
+            </div>
             <!-- END PAGE CONTENT -->
         </div>
         <!-- END PAGE CONTAINER -->
-        
+
         <!-- MESSAGE BOX-->
         <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
             <div class="mb-container">
                 <div class="mb-middle">
                     <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
                     <div class="mb-content">
-                        <p>Are you sure you want to log out?</p>                    
+                        <p>Are you sure you want to log out?</p>
                         <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
                     </div>
                     <div class="mb-footer">
@@ -291,88 +278,79 @@
 
     <!-- START SCRIPTS -->
         <!-- START PLUGINS -->
-        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>        
+
         <!-- END PLUGINS -->
 
-        <!-- START THIS PAGE PLUGINS-->        
+        <!-- START THIS PAGE PLUGINS-->
         <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
         <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-        
+
         <script type="text/javascript" src="js/plugins/knob/jquery.knob.min.js"></script>
-        <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>        
+        <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
         <script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-        <!-- END THIS PAGE PLUGINS-->        
-
+        <!-- END THIS PAGE PLUGINS-->
+              <script type="text/javascript" src="js/plugins/knob/jquery.knob.min.js"></script>
+              <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
+              <script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+              <!-- START THIS PAGE PLUGINS-->
+              <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+              <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+              <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
         <!-- START TEMPLATE -->
+              <script type="text/javascript" src="js/actions.js"></script>
+        <script type="text/javascript" src="js/plugins.js"></script>
 
-        
-        <script type="text/javascript" src="js/plugins.js"></script>        
-        <script type="text/javascript" src="js/actions.js"></script>        
         <!-- END TEMPLATE -->
             <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js" ></script>
-
+          <script type="text/javascript" src="bower_components/angular-progress-button-styles/dist/angular-progress-button-styles.min.js"></script>
+          <link rel="stylesheet" type="text/css" href="bower_components/angular-progress-button-styles/dist/angular-progress-button-styles.min.css">
 <script>
-    angular.module('dynamicFormApp', [])
-            .directive('checkList', function() {
-        return {
-            scope: {
-                list: '=checkList',
-                value: '@'
-            },
-            link: function(scope, elem, attrs) {
-                var handler = function(setup) {
-                    var checked = elem.prop('checked');
-                    var index = scope.list.indexOf(scope.value);
+  var app = angular.module('app', ['angular-progress-button-styles'])
+    .controller('ButtonPageCtrl', ButtonPageCtrl);//
+  function ButtonPageCtrl($scope, $timeout) {
+    $scope.progressFunctionarm = function() {
+      return $timeout(function() {console.log('arm')
+        $('#alarmimage').attr("src",'assets/images/users/lock1.png');
+        $.post('/arm',
+        function() {
+        console.log('poseted')
+        },
+        "json");
 
-                    if (checked && index == -1) {
-                        if (setup) elem.prop('checked', false);
-                        else scope.list.push(scope.value);
-                    } else if (!checked && index != -1) {
-                        if (setup) elem.prop('checked', true);
-                        else scope.list.splice(index, 1);
-                    }
-                };
 
-                var setupHandler = handler.bind(null, true);
-                var changeHandler = handler.bind(null, false);
+      }, 10000);
+    };
+    $scope.progressFunctiondisarm = function() {
+      return $timeout(function() {console.log('arm')
+        $.post('/disarm',
+          function() {
+            console.log('poseted')
+          },
+          "json");
+        $('#alarmimage').attr("src",'assets/images/users/lock2.png');
+      }, 5000);
+    };
+  }
+  setInterval(function(){
+    $.getJSON("/alarm.json", function(result) {
+      if(result.Status == 'on')
+        $('#alarmimage').attr("src",'assets/images/users/lock1.png');
+      else if(result.Status == 'off')
+        $('#alarmimage').attr("src",'assets/images/users/lock2.png');
 
-                elem.bind('change', function() {
-                    scope.$apply(changeHandler);
-                });
-                scope.$watch('list', setupHandler, true);
-            }
-        };
-    })
-            .controller('mainController', function($scope) {
-                $scope.toggleSelection = function(param) {
-                    devices[param] = param.selected
-                    console.log(param)
-                }
-                var devices = [
-                    {
-                        id: 'bob',
-                        active: 'on',
-                        selected: true
-                    },
-                    {
-                        id: 'Holly',
-                        active: 'on',
-                        selected: false
-                    },
-                    {
-                        id: 'Holly',
-                        active: 'on',
-                        selected: true
-                    }
-                ];
 
-                $scope.formDataTwo = {};
-                $scope.formDataTwo.devices = devices;
+    });
 
-            });
 
+  }, 30000);
+  $.getJSON("/alarm.json", function(result) {
+    if(result.status == 'on')
+      $('#alarmimage').attr("src",'assets/images/users/lock1.png');
+    else if(result.status == 'off')
+      $('#alarmimage').attr("src",'assets/images/users/lock2.png');
+
+
+  });
 </script>
     </body>
 </html>
